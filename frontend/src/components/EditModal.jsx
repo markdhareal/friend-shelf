@@ -3,6 +3,7 @@ import {
   Flex,
   FormControl,
   FormLabel,
+  IconButton,
   Input,
   Modal,
   ModalBody,
@@ -11,21 +12,24 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Radio,
-  RadioGroup,
   Textarea,
   useDisclosure,
 } from "@chakra-ui/react";
-import { BiAddToQueue } from "react-icons/bi";
+import { BiEditAlt } from "react-icons/bi";
 import React from "react";
 
-const CreateUser = () => {
+const EditModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Button onClick={onOpen}>
-        <BiAddToQueue size={20} />
-      </Button>
+      <IconButton
+        onClick={onOpen}
+        variant={"ghost"}
+        colorScheme="blue"
+        aria-label="See Menu"
+        size={"sm"}
+        icon={<BiEditAlt size={20} />}
+      />
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -56,18 +60,11 @@ const CreateUser = () => {
                 placeholder="He/She is a Data Scientist"
               />
             </FormControl>
-
-            <RadioGroup mt={4}>
-              <Flex gap={5}>
-                <Radio value="male">Male</Radio>
-                <Radio value="female">Female</Radio>
-              </Flex>
-            </RadioGroup>
           </ModalBody>
 
           <ModalFooter>
             <Button colorScheme="blue" mr={3}>
-              Add
+              Update
             </Button>
 
             <Button onClick={onClose}>Cancel</Button>
@@ -78,4 +75,4 @@ const CreateUser = () => {
   );
 };
 
-export default CreateUser;
+export default EditModal;

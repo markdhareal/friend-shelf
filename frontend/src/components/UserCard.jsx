@@ -8,40 +8,74 @@ import {
   Heading,
   IconButton,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import React from "react";
 import { BiTrash } from "react-icons/bi";
 import EditModal from "./EditModal";
+import { BASE_URL } from "../App";
 
-const UserCard = () => {
+const UserCard = ({ user, setUsers }) => {
+  const toast = useToast();
+  const handleDeleteFriend = async () => {
+    try {
+      const res = await fetch(BASE_URL + "/friends/" + user.id, {
+        method: "DELETE",
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error);
+      }
+
+      setUsers((prevUsers) => prevUsers.filter((u) => u.id !== user.id));
+      toast({
+        title: "Congratulations!",
+        description: "Friend Deleted",
+        status: "success",
+        duration: 2000,
+        position: "top-center",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: error.message,
+        status: "error",
+        duration: 3000,
+        position: "top-center",
+      });
+    }
+  };
   return (
     <>
       <Card>
         <CardHeader>
           <Flex gap={4}>
             <Flex flex={1} gap={4} alignItems={"center"}>
-              <Avatar src="https://avatar.iran.liara.run/public/boy" />
+              <Avatar src={user.imageUrl} />
 
               <Box>
-                <Heading size={sm}>Name</Heading>
-                <Text>Role</Text>
+                <Heading size={"sm"}>{user.name}</Heading>
+                <Text>{user.role}</Text>
               </Box>
             </Flex>
             <Flex>
-              <EditModal />
+              <EditModal user={user} setUsers={setUsers} />
               <IconButton
                 variant={"ghost"}
                 colorScheme="red"
                 size={"sm"}
                 aria-label="See Menu"
                 icon={<BiTrash size={20} />}
+                onClick={handleDeleteFriend}
               />
             </Flex>
           </Flex>
         </CardHeader>
 
         <CardBody>
-          <Text>Description</Text>
+          <Text>{user.description}</Text>
         </CardBody>
       </Card>
     </>

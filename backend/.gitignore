@@ -12,6 +12,7 @@ env/
 # Ignore instance directory and database file
 instance/ 
 instance/*.sqlite3
+instance/friends.db
 
 # Python package directories
 *.egg/

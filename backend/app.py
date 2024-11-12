@@ -6,9 +6,12 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-# CONFIGURATIONS
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///friends.db'
+# CONFIGURATIONS\
+db_path = os.path.join(os.path.expanduser("~"), "myapp", "db.sqlite3")
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+os.makedirs(os.path.dirname(db_path), exist_ok=True)
 
 #DATABASE
 db = SQLAlchemy(app)

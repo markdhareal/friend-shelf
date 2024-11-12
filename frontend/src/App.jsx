@@ -4,7 +4,7 @@ import UserGrid from "./components/UserGrid.jsx";
 import "./App.css";
 import { useState } from "react";
 
-export const BASE_URL = "http://127.0.0.1:5000/api";
+export const BASE_URL = "https://friend-shelf.onrender.com/api";
 function App() {
   const [users, setUsers] = useState([]);
 

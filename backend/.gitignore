@@ -9,6 +9,10 @@ env/
 .venv/
 .env/
 
+# Ignore instance directory and database file
+instance/ 
+instance/*.sqlite3
+
 # Python package directories
 *.egg/
 *.egg-info/

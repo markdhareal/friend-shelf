@@ -1,18 +1,29 @@
 from app import app, db
-from flask import request, jsonify
+from flask import request, jsonify, session
 from models import Friend
 
 # GET ALL FRIENDS
 @app.route('/api/friends', methods=['GET'])
 def get_friends():
-    friends = Friend.query.all()
-    result = [friend.convert_to_json() for friend in friends]
-    return jsonify(result)
+    try:
+
+        if 'user_session' not in session:
+            return jsonify({'error':'Session not Found'}), 400
+
+        friends = Friend.query.filter_by(user_session=session['user_session']).all()
+        result = [friend.convert_to_json() for friend in friends]
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({'error':str(e)}), 500
 
 # CREATE FRIEND
 @app.route('/api/friends', methods=['POST'])
 def create_friend():
     try:
+
+        if 'user_session' not in session:
+            return jsonify({'error':'Session not Found'}), 400
+
         data = request.json
 
         required_fields = ['name', 'role', 'description', 'gender']
@@ -32,7 +43,7 @@ def create_friend():
         else:
             image_url = None
 
-        new_friend = Friend(name=name, role=role, description=description, gender=gender, image_url=image_url)
+        new_friend = Friend(name=name, role=role, description=description, gender=gender, image_url=image_url, user_session=session['user_session'])
         db.session.add(new_friend)
         db.session.commit()
 

@@ -7,6 +7,7 @@ class Friend(db.Model):
     description = db.Column(db.Text, nullable=False)
     gender = db.Column(db.String(10), nullable=False)
     image_url = db.Column(db.String(200), nullable=True)
+    user_session = db.Column(db.String(36), nullable=False)
 
     def convert_to_json(self):
         return {

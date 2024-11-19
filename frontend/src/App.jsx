@@ -2,11 +2,24 @@ import { Container, Stack, Text } from "@chakra-ui/react";
 import Navbar from "./components/Navbar.jsx";
 import UserGrid from "./components/UserGrid.jsx";
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { handleFirstVisit } from "./api/handleSession.js";
 
 export const BASE_URL = "https://friend-shelf.onrender.com/api";
 function App() {
   const [users, setUsers] = useState([]);
+  const [message, setMessage] = useState("");
+  const [sessionID, setSessionID] = useState("");
+
+  useEffect(() => {
+    const fetchSessionData = async () => {
+      const data = await handleFirstVisit();
+      setMessage(data.message);
+      setSessionID(data.session_id);
+    };
+
+    fetchSessionData();
+  }, []);
 
   return (
     <Stack minH={"100vh"}>

@@ -19,9 +19,9 @@ FriendShelf is a full-stack web application that allows users to store and manag
 
 ![Light Mode Full Display](https://github.com/markdhareal/friend-shelf/blob/master/images/friend-shelf-full-white.jpg)<br><br>
 
-| Dark Mode Small Display                                                                                                 | Light Mode Small Dsiplay                                                                                                 |
+| Dark Mode Small Screen Display                                                                                                 | Light Mode Small Screen Display                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| ![Dark Mode Small Display](https://github.com/markdhareal/friend-shelf/blob/master/images/friend-shelf-small-black.jpg) | ![Light Mode Small Dsiplay](https://github.com/markdhareal/friend-shelf/blob/master/images/friend-shelf-small-white.jpg) |
+| ![Dark Mode Small Screen Display](https://github.com/markdhareal/friend-shelf/blob/master/images/friend-shelf-small-black.jpg) | ![Light Mode Small Screen Display](https://github.com/markdhareal/friend-shelf/blob/master/images/friend-shelf-small-white.jpg) |
 
 ---
 
